@@ -35,12 +35,16 @@ class Builder
         return 2;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public function getDDL()
     {
         // return DDL for all tables in the model
     }
 }
+=======
+} 
+>>>>>>> origin/master
 =======
 } 
 >>>>>>> origin/master

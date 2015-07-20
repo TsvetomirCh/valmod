@@ -1,6 +1,7 @@
 <?php
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 use Direct\Valmod\ModelBuilder\Column;
 
 class ColumnTest extends PHPUnit_Framework_TestCase
@@ -25,6 +26,8 @@ JSON;
         $col = new Column($json);
         $this->assertEquals("col_int INTEGER", $col->getDDL());
 =======
+=======
+>>>>>>> origin/master
 class ColumnTest extends PHPUnit_Framework_TestCase
 {
 
@@ -32,6 +35,9 @@ class ColumnTest extends PHPUnit_Framework_TestCase
     public function dummy()
     {
 
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
     }
 } 

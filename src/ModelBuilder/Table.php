@@ -27,11 +27,14 @@ class Table
         return 2;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public function getDDL()
     {
         // beginTable + all columns + endTable
     }
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
 }

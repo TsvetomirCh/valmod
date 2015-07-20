@@ -15,6 +15,7 @@ namespace Direct\Valmod\ModelBuilder;
 class Column
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     protected $columnName;
     protected $dataType;
     protected $displayName;
@@ -44,6 +45,10 @@ class Column
     }
 
 }
+=======
+
+} 
+>>>>>>> origin/master
 =======
 
 } 
