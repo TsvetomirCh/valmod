@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/dbrmr/valmod.svg)](https://travis-ci.org/dbrmr/valmod)
+[![Coverage Status](https://coveralls.io/repos/dbrmr/valmod/badge.svg?branch=master&service=github)](https://coveralls.io/github/dbrmr/valmod?branch=master)
