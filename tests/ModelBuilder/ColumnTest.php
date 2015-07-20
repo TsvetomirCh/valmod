@@ -1,6 +1,5 @@
 <?php
 
-
 use Direct\Valmod\ModelBuilder\Column;
 
 class ColumnTest extends PHPUnit_Framework_TestCase
@@ -20,8 +19,19 @@ JSON;
     public function it_can_create_integer_column()
     {
 $json = <<<JSON
-{ "columnName": "col_int", "dataType": "Integer", "displayName": "First Column", "description": "The Very First Column" }
+{ "columnName": "col_int", "dataType": "Integer" }
 JSON;
         $col = new Column($json);
         $this->assertEquals("col_int INTEGER", $col->getDDL());
-} 
+    }
+
+    /** @test */
+    public function it_can_create_string_column()
+    {
+$json = <<<JSON
+{ "columnName": "col_str", "dataType": "String" }
+JSON;
+        $col = new Column($json);
+        $this->assertEquals("col_str VARCHAR(255)", $col->getDDL());
+    }
+}

@@ -27,9 +27,9 @@ class Table
         return 2;
     }
 
-
     public function getDDL()
     {
+        // TODO:
         // beginTable + all columns + endTable
     }
 }

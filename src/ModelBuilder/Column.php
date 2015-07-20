@@ -38,6 +38,7 @@ class Column
 
     public function getDDL()
     {
+        // TODO:
         // switch $dataType, call createInteger, createString, etc...
         // return DDL String
     }
