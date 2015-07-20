@@ -5,15 +5,10 @@ use Direct\Valmod\ModelBuilder\Table;
 class TableTest extends PHPUnit_Framework_TestCase
 {
     protected $tableJson;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     /**
      * @var Direct\Valmod\ModelBuilder\Table
      */
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
     protected $table;
 
     protected function setUp()

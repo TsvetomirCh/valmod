@@ -26,15 +26,10 @@ class Table
         // TODO: Actually return the column count
         return 2;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
     public function getDDL()
     {
         // beginTable + all columns + endTable
     }
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 }

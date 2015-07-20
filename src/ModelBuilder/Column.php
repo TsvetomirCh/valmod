@@ -14,8 +14,6 @@ namespace Direct\Valmod\ModelBuilder;
 
 class Column
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
     protected $columnName;
     protected $dataType;
     protected $displayName;
@@ -43,13 +41,4 @@ class Column
         // switch $dataType, call createInteger, createString, etc...
         // return DDL String
     }
-
 }
-=======
-
-} 
->>>>>>> origin/master
-=======
-
-} 
->>>>>>> origin/master

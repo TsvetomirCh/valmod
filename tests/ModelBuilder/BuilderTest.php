@@ -6,15 +6,10 @@ class BuilderTest extends PHPUnit_Framework_TestCase
 {
     protected $modelJson;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     /**
      * @var Direct\Valmod\ModelBuilder\Builder
      */
-=======
->>>>>>> origin/master
-=======
->>>>>>> origin/master
+
     protected $modelBuilder;
 
     protected function setUp()
