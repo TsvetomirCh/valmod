@@ -1,0 +1,14 @@
+{
+    "name": "direct/valmod",
+    "require": {
+        
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Direct\\Valmod\\": "src"
+        }
+    }
+}
