@@ -22,6 +22,36 @@ class ColumnTest extends PHPUnit_Framework_TestCase
         $col = new Column('{"dataType": "String"}');
     }
 
+    /**
+     * @test
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function it_throws_exception_on_empty_column_name()
+    {
+        $col = new Column('{ "columnName": "col1", "dataType": "String" }');
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function it_throws_exception_if_no_data_type()
+    {
+        $col = new Column('{ "columnName": "col1" }');
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function it_throws_exception_on_invalid_data_type()
+    {
+        $col = new Column('{ "columnName": "col1", "dataType": "Unknown" }');
+    }
+
     /** @test */
     public function it_can_create_integer_column()
     {
