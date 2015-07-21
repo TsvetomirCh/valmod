@@ -4,12 +4,12 @@ namespace Direct\Valmod\ModelBuilder;
 
 /**
  * Types
- *  - Integer
- *  - BigInteger
- *  - Float + precision? or always fixed precision
- *  - String - always 255 length
- *  - Flag - 0/1 Y/N CHAR(1)
- *  - DateTime - the time is optional
+ *  - Integer   -> INT UNSIGNED NULL
+ *  - Float     -> DOUBLE(10,2) NULL
+ *  - String    -> VARCHAR(255) NULL
+ *  - Flag      -> TINYINT NULL
+ *  - DateTime  -> TIMESTAMP NOT NULL DEFAULT "0000-00-00 00:00:00"
+ *  - All fields nullable
  */
 
 class Column
@@ -21,25 +21,88 @@ class Column
 
     public function __construct($json)
     {
-        // TODO: decode json and fill the properties
+
+        $decodedJson = json_decode($json, true);
+
+        if (isset($decodedJson['columnName'])) {
+
+            $this->columnName = $decodedJson['columnName'];
+
+        } else {
+
+            throw new \InvalidArgumentException('Column name is required!');
+
+        }
+
+        $this->dataType = $decodedJson['dataType'];
+
+        if (!empty($decodedJson['displayName'])) {
+
+            $this->displayName = $decodedJson['displayName'];
+
+        }
+
+        if (!empty($decodedJson['description'])) {
+
+            $this->description = $decodedJson['description'];
+
+        }
+
     }
 
     public function getColumnName()
     {
-        // TODO:
-        return "col1";
+        return $this->columnName;
     }
 
     public function getDataType()
     {
-        // TODO:
-        return "Integer";
+        return $this->dataType;
     }
 
-    public function getDDL()
+    public function getColumnDefinition()
     {
-        // TODO:
-        // switch $dataType, call createInteger, createString, etc...
-        // return DDL String
+        switch ($this->dataType) {
+            case 'Integer':
+                return $this->createInteger();
+                break;
+            case 'String':
+                return $this->createString();
+                break;
+            case 'Float':
+                return $this->createFloat();
+                break;
+            case 'Flag':
+                return $this->createFlag();
+                break;
+            case 'DateTime':
+                return $this->createDate();
+                break;
+            }
+    }
+
+    private function createInteger()
+    {
+        return $this->getColumnName(). " " . 'INT UNSIGNED NULL';
+    }
+
+    private function createString()
+    {
+        return $this->getColumnName(). " " . "VARCHAR(255) NULL";
+    }
+
+    private function createFloat()
+    {
+        return $this->getColumnName(). " " . "DOUBLE(10,2) NULL";
+    }
+
+    private function createFlag()
+    {
+        return $this->getColumnName(). " " . "TINYINT NULL";
+    }
+
+    private function createDate()
+    {
+        return $this->getColumnName(). " " . 'TIMESTAMP NOT NULL DEFAULT "0000-00-00 00:00:00"';
     }
 }

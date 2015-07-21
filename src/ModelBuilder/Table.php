@@ -11,20 +11,29 @@ class Table
 
     public function __construct($json)
     {
-        // TODO: should receive part of the json, only for one table
+        // TODO: Get the table prefix
+
         // TODO: Hydrate the columns array
+        $decodedJson = json_decode($json, true);
+
+        $this->tableName = $decodedJson['tableName'];
+
+        $this->columns = $decodedJson['columns'];
+
+//        foreach($decodedJson['columns'] as $columns){
+//            $this->columns[] = $columns['columnName'];
+//        }
+
     }
 
     public function getTableName()
     {
-        // TODO: Actually return the table name
-        return "first_table";
+        return $this->tableName;
     }
 
     public function getColumnCount()
     {
-        // TODO: Actually return the column count
-        return 2;
+        return count($this->columns);
     }
 
     public function getDDL()
