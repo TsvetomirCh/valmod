@@ -24,9 +24,21 @@ class Table
 
     public function __construct($prefix, $json)
     {
+
         $decodedJson = json_decode($json, true);
 
+
         $this->tableName = $decodedJson['tableName'];
+
+        if (!empty($prefix)) {
+
+            $this->tableName = $prefix . "_" . $this->tableName;
+
+        } else {
+
+            throw new \InvalidArgumentException('Prefix is required!');
+
+        }
 
         // TODO:
         // The Column constructor requires json
@@ -50,7 +62,13 @@ class Table
 
     public function getTableDefinition()
     {
-        // TODO:
-        // beginTable + all columns + endTable
+        $columnsDefinition = '';
+
+        for ($i = 0; $i < $this->getColumnCount(); $i++ ) {
+            $columnsDefinition .= ', ' .$this->columns[$i]->getColumnDefinition();
+        }
+            $columnsDefinition = ltrim($columnsDefinition, ',');
+
+        return "CREATE TABLE ". $this->getTableName() ." (". $columnsDefinition." )";
     }
 }
