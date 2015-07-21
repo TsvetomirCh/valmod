@@ -34,7 +34,7 @@ class Column
 
             } else {
 
-                throw new \InvalidArgumentException('Column name cannot be empty!');
+                throw new \InvalidArgumentException('Column name can not be empty!');
 
             }
 
@@ -58,7 +58,7 @@ class Column
 
         } else {
 
-            throw new \InvalidArgumentException('Data type cannot be empty');
+            throw new \InvalidArgumentException('Data type can not be empty');
         }
 
 
