@@ -19,6 +19,8 @@ class Column
     protected $displayName;
     protected $description;
 
+    public $dataTypes = ['Integer', 'Float', 'String', 'Flag', 'DateTime'];
+
     public function __construct($json)
     {
 
@@ -26,7 +28,15 @@ class Column
 
         if (isset($decodedJson['columnName'])) {
 
-            $this->columnName = $decodedJson['columnName'];
+            if (!empty($decodedJson['columnName'])) {
+
+                $this->columnName = $decodedJson['columnName'];
+
+            } else {
+
+                throw new \InvalidArgumentException('Column name cannot be empty!');
+
+            }
 
         } else {
 
@@ -34,7 +44,24 @@ class Column
 
         }
 
-        $this->dataType = $decodedJson['dataType'];
+
+        if (!empty($decodedJson['dataType'])) {
+
+            if (in_array($decodedJson['dataType'], $this->dataTypes)) {
+
+                $this->dataType = $decodedJson['dataType'];
+
+            } else {
+
+                throw new \InvalidArgumentException('Invalid data type!');
+            }
+
+        } else {
+
+            throw new \InvalidArgumentException('Data type cannot be empty');
+        }
+
+
 
         if (!empty($decodedJson['displayName'])) {
 
