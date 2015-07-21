@@ -29,7 +29,7 @@ class ColumnTest extends PHPUnit_Framework_TestCase
      */
     public function it_throws_exception_on_empty_column_name()
     {
-        $col = new Column('{ "columnName": "col1", "dataType": "String" }');
+        $col = new Column('{ "columnName": "", "dataType": "String" }');
     }
 
     /**
@@ -40,6 +40,16 @@ class ColumnTest extends PHPUnit_Framework_TestCase
     public function it_throws_exception_if_no_data_type()
     {
         $col = new Column('{ "columnName": "col1" }');
+    }
+
+    /**
+     * @test
+     *
+     * @expectedException InvalidArgumentException
+     */
+    public function it_throws_exception_on_empty_data_type()
+    {
+        $col = new Column('{ "columnName": "col1", "dataType": "" }');
     }
 
     /**

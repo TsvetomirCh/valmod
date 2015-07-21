@@ -2,6 +2,19 @@
 
 namespace Direct\Valmod\ModelBuilder;
 
+/**
+ * TODO:
+ * Table Key ?
+ *  - table have array of column names defined as key
+ *  - if the table does not have a key defined, then we add an id column
+ *
+ * Timestamps ?
+ *  - always add internal column - created_at DateTime
+ *
+ * Datasource ?
+ *  - where does the record comes from - filename/web service call
+ */
+
 class Table
 {
     protected $tableName;
@@ -9,21 +22,20 @@ class Table
 
     protected $columns;
 
-    public function __construct($json)
+    public function __construct($prefix, $json)
     {
-        // TODO: Get the table prefix
-
-        // TODO: Hydrate the columns array
         $decodedJson = json_decode($json, true);
 
         $this->tableName = $decodedJson['tableName'];
 
-        $this->columns = $decodedJson['columns'];
-
-//        foreach($decodedJson['columns'] as $columns){
-//            $this->columns[] = $columns['columnName'];
-//        }
-
+        // TODO:
+        // The Column constructor requires json
+        // How can we prevent encoding to json again ?
+        // Maybe support creating Columns via json string and array ?
+        // Or the json will be decoded once in the Builder class, so Tables and Columns will be created via arrays.
+        foreach ($decodedJson['columns'] as $columnJson ) {
+            $this->columns[] = new Column(json_encode($columnJson));
+        }
     }
 
     public function getTableName()
@@ -36,7 +48,7 @@ class Table
         return count($this->columns);
     }
 
-    public function getDDL()
+    public function getTableDefinition()
     {
         // TODO:
         // beginTable + all columns + endTable

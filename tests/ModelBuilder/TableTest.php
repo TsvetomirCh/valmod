@@ -6,36 +6,47 @@ class TableTest extends PHPUnit_Framework_TestCase
 {
     protected $tableJson;
 
-    /**
-     * @var Direct\Valmod\ModelBuilder\Table
-     */
-    protected $table;
-
     protected function setUp()
     {
-
 $this->tableJson = <<<JSON
 {
     "tableName": "first_table",
     "displayName": "My First Table",
     "columns": [
-        { "columnName": "col1" },
-        { "columnName": "col2" }
+        { "columnName": "col1", "dataType": "Integer" },
+        { "columnName": "col2", "dataType": "String" }
     ]
 }
 JSON;
-        $this->table = new Table($this->tableJson);
     }
 
     /** @test */
-    public function it_has_table_name()
+    public function it_has_table_name_with_prefix()
     {
-        $this->assertEquals("first_table", $this->table->getTableName());
+        $table = new Table('tmp', $this->tableJson);
+        $this->assertEquals("tmp_first_table", $table->getTableName());
+    }
+
+    /**
+     * @test
+     * @expectedException InvalidArgumentException
+     */
+    public function it_throws_exception_on_empty_prefix()
+    {
+        $table = new Table('', $this->tableJson);
     }
 
     /** @test */
     public function it_has_two_columns()
     {
-        $this->assertEquals(2, $this->table->getColumnCount());
+        $table = new Table('tmp', $this->tableJson);
+        $this->assertEquals(2, $table->getColumnCount());
     }
-} 
+
+    /** @test */
+    public function it_can_create_table()
+    {
+        $table = new Table('tmp', $this->tableJson);
+        $this->assertContains('CREATE TABLE tmp_first_table', $table->getTableDefinition());
+    }
+}
