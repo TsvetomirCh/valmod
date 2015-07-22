@@ -2,42 +2,52 @@
 
 namespace Direct\Valmod\ModelBuilder;
 
-/**
- * - Load model definition from json
- * - Generate DDL for all tables
- *
- */
 class Builder
 {
-    // TODO: array of tables
+    protected $modelName;
+
+    protected $prefix;
+
     protected $tables;
 
     public function __construct($json)
     {
-        // TODO: load the json and hydrate the array of tables - loop the tables, create new Table Object, add it the array
+        $decodedJson = json_decode($json, true);
+
+        $this->modelName = $decodedJson['modelName'];
+
+        $this->prefix = $decodedJson['prefix'];
+
+        foreach ($decodedJson['tables'] as $table ) {
+            $this->tables[] = new Table($this->prefix, json_encode($table));
+        }
+
     }
 
     public function getModelName()
     {
-        // TODO: Actually return the model name
-        return "Dummy Model";
+        return $this->modelName;
     }
 
     public function getPrefix()
     {
-        // TODO: Actually return the prefix
-        return "dummy";
+        return $this->prefix;
     }
 
     public function getTableCount()
     {
-        // TODO: Actually return the table count
-        return 2;
+        return count($this->tables);
     }
 
-    public function getDDL()
+    public function getModelDefinition()
     {
-        // return DDL for all tables in the model
+        $result = '';
+
+        foreach ($this->tables as $table) {
+            $result .= $table->getTableDefinition();
+        }
+
+        return $result;
     }
 }
 

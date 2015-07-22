@@ -14,7 +14,6 @@ class BuilderTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        // { "columnName": "", "dataType": "", "displayName": "", "description": "" },
 $this->modelJson = <<<JSON
 {
     "modelName": "Dummy Model",
@@ -27,8 +26,6 @@ $this->modelJson = <<<JSON
                 { "columnName": "col1", "dataType": "Integer", "displayName": "First Column", "description": "The Very First Column" },
                 { "columnName": "strcol", "dataType": "String", "displayName": "String Column", "description": "No Description" }
             ]
-        },
-        {
         }
     ]
 }
@@ -52,6 +49,6 @@ JSON;
     /** @test */
     public function it_has_two_tables()
     {
-        $this->assertEquals(2, $this->modelBuilder->getTableCount());
+        $this->assertEquals(1, $this->modelBuilder->getTableCount());
     }
 } 
