@@ -62,7 +62,9 @@ class Table
 
     public function getTableDefinition()
     {
-        $columnDefinitions = array_map(create_function('$c', 'return $c->getColumnDefinition();'), $this->columns);
+        $columnDefinitions = array_map( function (Column $col) {
+            return $col->getColumnDefinition();
+        }, $this->columns);
 
         $allColumns = implode(', ', $columnDefinitions);
 
