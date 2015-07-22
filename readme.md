@@ -7,5 +7,5 @@
 Should be able to use the package like this
 ```php
 $builder = new Direct\Valmod\ModelBuilder($json);
-$createStatement = $builder->getDDL();
+$createStatement = $builder->getModelDefinition();
 ```
