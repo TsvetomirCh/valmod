@@ -62,13 +62,10 @@ class Table
 
     public function getTableDefinition()
     {
-        $columnsDefinition = '';
+        $columnDefinitions = array_map(create_function('$c', 'return $c->getColumnDefinition();'), $this->columns);
 
-        for ($i = 0; $i < $this->getColumnCount(); $i++ ) {
-            $columnsDefinition .= ', ' .$this->columns[$i]->getColumnDefinition();
-        }
-            $columnsDefinition = ltrim($columnsDefinition, ',');
+        $allColumns = implode(', ', $columnDefinitions);
 
-        return "CREATE TABLE ". $this->getTableName() ." (". $columnsDefinition." )";
+        return "CREATE TABLE " . $this->getTableName() . " ( " . $allColumns . " );";
     }
 }
