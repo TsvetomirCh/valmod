@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/dbrmr/valmod.svg)](https://travis-ci.org/dbrmr/valmod)
 
-### Run: composer install
 ### Run: ./vendor/bin/phpunit
 
 
